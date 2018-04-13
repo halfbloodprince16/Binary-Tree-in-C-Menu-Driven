@@ -52,6 +52,7 @@ class stacku
 			return temp ;
 			
 		}
+		void display(tnode* ptr,int level);
 		
 		
 };
@@ -75,7 +76,25 @@ void post(tnode *temp)
 	
 }
 
-
+void stacku :: display(tnode* ptr,int level)
+{
+	int i;
+    if (ptr != NULL)
+    {
+        display(ptr->right, level+1);
+        cout<<endl;
+        if (ptr == top)
+            cout<<"Root->:  ";
+        else
+        {
+            for (i = 0;i < level; i++)
+                cout<<"       ";
+        }
+        cout<<ptr->x;
+        display(ptr->left, level+1);
+    }
+    cout<<endl;
+}
 
 int main()
 {
@@ -112,7 +131,7 @@ int main()
 		i++;
 		
 	}
-	
+	display(top,1);
 	
 	tnode *top  = st.pop();
 	cout<<"Preorder \n";
